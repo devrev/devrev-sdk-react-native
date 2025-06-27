@@ -313,3 +313,4 @@ local.properties
 keystore.properties
 devrev_android.jks
 credentials.properties
+.kotlin/

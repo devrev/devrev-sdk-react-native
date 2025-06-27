@@ -27,6 +27,7 @@ DevRev SDK, used for integrating DevRev services into your React Native app.
 			- [Masking sensitive data](#masking-sensitive-data)
 			- [Timers](#timers)
 			- [Screen tracking](#screen-tracking)
+			- [Screen transition tracking (Android only)](#screen-transition-tracking-android-only)
 		- [Push notifications](#push-notifications)
 			- [Configuration](#configuration)
 			- [Register for push notifications](#register-for-push-notifications)
@@ -36,11 +37,15 @@ DevRev SDK, used for integrating DevRev services into your React Native app.
 					- [Example](#example)
 				- [iOS](#ios)
 					- [Example](#example-1)
-			- [Screen transition tracking (Android only)](#screen-transition-tracking-android-only)
+	- [Sample app](#sample-app)
 	- [Troubleshooting](#troubleshooting)
 	- [Migration Guide](#migration-guide)
 
 ## Quickstart
+
+### Requirements
+- Minimum deployment target Android SDK 24 or iOS 15.1.
+
 ### Installation
 To install the DevRev SDK, run the following command:
 
@@ -250,6 +255,21 @@ The DevRev SDK offers automatic screen tracking to help you understand how users
 DevRev.trackScreen(name: string)
 ```
 
+#### Screen transition tracking (Android only)
+On Android, the DevRev SDK provides methods to manually track the screen transitions.
+
+When a screen transition begins, you must call the following method:
+
+```typescript
+DevRev.startScreenTransition()
+```
+
+When a screen transition ends, you must call the following method:
+
+```typescript
+DevRev.endScreenTransition()
+```
+
 ### Push notifications
 You can configure your app to receive push notifications from the DevRev SDK. The SDK is able to handle push notifications and execute actions based on the notification's content.
 
@@ -318,20 +338,32 @@ DevRev.processPushNotification(payload: string)
 DevRev.processPushNotification(JSON.stringify(payload));
 ```
 
-#### Screen transition tracking (Android only)
-On Android, the DevRev SDK provides methods to manually track the screen transitions.
+## Sample app
 
-When a screen transition begins, you must call the following method:
+A sample app with use cases for the DevRev React Native plugin has been provided as a part of our [public repository](https://github.com/devrev/devrev-sdk-react-native). To set up and run the sample app:
 
-```typescript
-DevRev.startScreenTransition()
-```
+1. Go to the sample directory:
+    ```sh
+    cd sample
+    ```
 
-When a screen transition ends, you must call the following method:
+2. Install dependencies:
+    ```sh
+    yarn install
+    ```
 
-```typescript
-DevRev.endScreenTransition()
-```
+3. For iOS, run:
+    ```sh
+    cd ios
+    pod install
+    ```
+
+4. Run the app on Android or iOS using:
+    ```sh
+    npx react-native start
+    ```
+
+Or open `android` directory in Android Studio or `ios/DevRevSDKSample.xcworkspace` in Xcode and run the app from there.
 
 ## Troubleshooting
 - **Issue**: Support chat won't show.

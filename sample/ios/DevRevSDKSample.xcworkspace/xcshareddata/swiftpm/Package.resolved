@@ -1,0 +1,15 @@
+{
+  "originHash" : "ae2c03e7af840006e022921dfc5e164dc38725d8956b249fcc8fdfb9abf03c6e",
+  "pins" : [
+    {
+      "identity" : "devrev-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:devrev/devrev-sdk-ios.git",
+      "state" : {
+        "revision" : "21d5a4e3d61b8cac599d95af2f75bc8442c8e3a0",
+        "version" : "2.0.2"
+      }
+    }
+  ],
+  "version" : 3
+}

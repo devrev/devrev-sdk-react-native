@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { Text, Linking, TouchableOpacity, StyleSheet } from 'react-native';
 import * as DevRev from '@devrev/sdk-react-native';
-import firebase from '@react-native-firebase/app';
 import NotificationService from './NotificationService';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,6 +10,8 @@ import PushNotificationsScreen from './screens/PushNotificationsScreen';
 import SessionAnalyticsScreen from './screens/SessionAnalyticsScreen';
 import SupportChatScreen from './screens/SupportChatScreen';
 import HomeScreen from './screens/HomeScreen';
+import DelayedScreen from './screens/DelayedScreen';
+import { commonStyles } from './styles/styles';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -18,6 +19,7 @@ export type RootStackParamList = {
   PushNotifications: undefined;
   SessionAnalytics: undefined;
   SupportChat: undefined;
+  DelayedScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -28,6 +30,7 @@ const screens = [
   { name: 'PushNotifications', component: PushNotificationsScreen, title: 'Push Notifications' },
   { name: 'SessionAnalytics', component: SessionAnalyticsScreen, title: 'Session Analytics' },
   { name: 'SupportChat', component: SupportChatScreen, title: 'Support Chat' },
+  { name: 'DelayedScreen', component: DelayedScreen, title: 'Delayed Screen' },
 ] as const;
 
 const createScreen = (
@@ -45,9 +48,9 @@ const createScreen = (
         title: title,
         headerRight: () => (
           <TouchableOpacity onPress={() => navigation.replace(name)}
-            style={styles.refreshButton}
+            style={commonStyles.refreshButton}
           >
-            <Text style={styles.refreshIcon}>↻</Text>
+            <Text style={commonStyles.refreshIcon}>↻</Text>
           </TouchableOpacity>
         ),
       })} />
@@ -57,14 +60,10 @@ const createScreen = (
 const App = () => {
   React.useEffect(() => {
     try {
-      firebase.app();
       DevRev.configure(
         'YOUR_APP_ID',
       );
       DevRev.setShouldDismissModalsOnOpenLink(true);
-      DevRev.setInAppLinkHandler((url) => {
-        Linking.openURL(url)
-      });
 
       NotificationService.initialize();
     } catch (error) {
@@ -82,16 +81,5 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  refreshButton: {
-    marginRight: 20,
-  },
-  refreshIcon: {
-    fontSize: 24,
-    fontWeight: "bold",
-    transform: [{ rotate: '90deg' }]
-  },
-});
 
 export default App;

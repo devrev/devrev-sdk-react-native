@@ -1,40 +1,31 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, type TextStyle, type ViewStyle } from 'react-native';
+import React, { forwardRef } from 'react';
+import { TouchableOpacity, Text, type TextStyle, type ViewStyle, View } from 'react-native';
+import { commonStyles } from '../styles/styles';
 
 interface TouchableOpacityProps {
-  onPress: () => void;
-  buttonText: string;
-  buttonStyle?: ViewStyle;
-  textStyle?: TextStyle;
+    onPress: () => void;
+    buttonText: string;
+    buttonStyle?: ViewStyle;
+    textStyle?: TextStyle;
 }
 
-const TouchableOpacityButton: React.FC<TouchableOpacityProps> = ({
-  onPress,
-  buttonText,
-  buttonStyle,
-  textStyle,
-}) => {
-  return (
-    <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
-      <Text style={[styles.buttonText, textStyle]}>{buttonText}</Text>
-    </TouchableOpacity>
-  );
-};
-
-const styles = StyleSheet.create({
-  button: {
-    margin: 4,
-    padding: 8,
-    paddingLeft: 4,
-    backgroundColor: '#FFFFFF',
-    width: '100%',
-    alignItems: 'flex-start',
-  },
-  buttonText: {
-    color: '#000000',
-    fontSize: 16,
-    textAlign: 'left',
-  },
+const TouchableOpacityButton = forwardRef<View, TouchableOpacityProps>(({
+    onPress,
+    buttonText,
+    buttonStyle,
+    textStyle,
+}, ref) => {
+    return (
+        <TouchableOpacity
+            ref={ref}
+            onPress={onPress}
+            style={[commonStyles.button, buttonStyle]}
+        >
+            <Text style={[commonStyles.buttonText, textStyle]}>
+                {buttonText}
+            </Text>
+        </TouchableOpacity>
+    );
 });
 
 export default TouchableOpacityButton;

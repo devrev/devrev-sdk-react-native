@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-06-27
+
+### Added
+- Added support for React Native new architecture.
+- iOS only: Introduced crash reporting integrated with session recordings.
+
+### Changed
+- Bumped the react native version of the SDK to 0.79.0.
+- Bumped the iOS minimum deployment target to 15.1.
+- iOS only: Improved the support widget navigaion.
+
+### Fixed
+- Fixed an issue with timer tracking to ensure correct session properties are recorded.
+
 ## [2.0.0] - 2025-06-11
 
 ### Changed
