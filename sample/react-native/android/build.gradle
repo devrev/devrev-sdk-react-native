@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.6.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21")
+        classpath("com.google.gms:google-services:4.4.2")
+    }
+}
+
+plugins {
+    id "com.facebook.react.rootproject" apply false
+}
+
+ext {
+    buildToolsVersion = "35.0.0"
+    minSdkVersion = 24
+    compileSdkVersion = 35
+    targetSdkVersion = 35
+    ndkVersion = "26.1.10909125"
+    kotlinVersion = "2.0.21"
+}
+
+apply plugin: "com.facebook.react.rootproject"
+
+rootProject.allprojects {
+  repositories {
+    google()
+    mavenCentral()
+    mavenLocal()
+    maven {
+      url "https://central.sonatype.com/repository/maven-snapshots/"
+      mavenContent {
+        snapshotsOnly()
+      }
+    }
+  }
+}

@@ -4,6 +4,57 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] - 2025-10-17
+
+### Added
+- Added the ability to pause and resume user interaction event tracking, offering more security on the confidential screens.
+
+### Changed
+- Simplified identification flow by deprecating redundant anonymous API usage.
+
+### Fixed
+- Resolved potential out of memory crashes.
+- Corrected incorrect or missing device model names on certain iPhone versions.
+- Fixed visual distortion issues when zooming inside web view.
+- Fixed issues in the logout process to ensure complete session termination and improved reliability.
+
+## [2.2.0] - 2025-09-29
+
+### Changed
+- iOS only: Improved the infrastructure for custom masking.
+- Unified the screen tracking feature naming across platforms.
+
+### Deprecated
+- Deprecated the `startScreenTransition` and `endScreenTransition` functions, use the `setInScreenTransitioning` function instead.
+
+### Fixed
+- iOS only: Fixed push notifications not opening the conversations.
+- Android only: Resolved potential issues that could cause app crashes during network operations.
+- Android only: When adding session properties before initialization, they are now properly queued and executed.
+- Android only: Added extra safeguards to prevent crashes related to uninitialized properties.
+- Android only: Enhanced the stability of session-recording flows for a more reliable experience.
+
+## [2.1.3] - 2025-09-05
+
+## Added
+- Added detailed observability for SDK configuration and identification steps.
+
+## [2.1.2] - 2025-09-01
+
+## Added
+- Added a caching mechanism for identification calls.
+
+## Fixed
+- Improved the presentation of support widget in edge to edge scenarios.
+- Improved the session analytics and metrics.
+- Fixed an issue related to long session engagement times.
+
+## [2.1.1] - 2025-07-24
+
+## Fixed
+- Fixed an issue with manual unmasking of input components.
+- Fixed an issue with session uploads when the app is rapidly killed.
+
 ## [2.1.0] - 2025-06-27
 
 ### Added
