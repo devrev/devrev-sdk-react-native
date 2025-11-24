@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>API_KEY</key>
+    <string>DUMMY_API_KEY</string>
+    <key>CLIENT_ID</key>
+    <string>DUMMY_CLIENT_ID</string>
+    <key>GOOGLE_APP_ID</key>
+    <string>1:1234567890:ios:abcdef123456</string>
+    <key>PROJECT_ID</key>
+    <string>dummy-project</string>
+    <key>BUNDLE_ID</key>
+    <string>ai.devrev.sdk.bridge.reactnative.expo.sample</string>
+</dict>
+</plist>

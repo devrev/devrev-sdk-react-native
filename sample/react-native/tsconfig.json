@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@devrev/sdk-react-native": [
+                "../../lib/typescript/src"
+            ],
+            "@devrev/sdk-react-native/*": [
+                "../../lib/typescript/src/*"
+            ]
+        },
+        "jsx": "react",
+    },
+    "include": [
+        "./src",
+        "./index.ts",
+        "./index.tsx"
+    ]
+}

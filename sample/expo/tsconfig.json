@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "devrev-sdk-react-native": ["../../src/index"],
+      "devrev-sdk-react-native/*": ["../../src/*"]
+    }
+  }
+}

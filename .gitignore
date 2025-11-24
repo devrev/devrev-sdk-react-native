@@ -8,22 +8,7 @@
 !**/*.xcworkspacedata
 !**/*.xcsettings
 !**/*.xcscheme
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
 DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-project.xcworkspace
 **/.xcode.env.local
 
 # Gradle
@@ -68,10 +53,6 @@ buck-out
 .watchmanconfig
 
 # Android
-.idea
-.gradle
-local.properties
-*.iml
 /packages/react-native/android/*
 !/packages/react-native/android/README.md
 
@@ -80,9 +61,6 @@ node_modules
 *.log
 .nvm
 package-lock.json
-
-# OS X
-.DS_Store
 
 # Test generated files
 *.js.meta
@@ -152,7 +130,6 @@ vendor/
 
 # Visual Studio Code (config dir - if present, this merges user defined
 # workspace settings on top of react-native.code-workspace)
-/.vscode
 
 # Visual Studio
 .vs
@@ -166,11 +143,7 @@ vendor/
 # CircleCI
 .circleci/generated_config.yml
 
-# XDE
-.expo/
-
 # VSCode
-.vscode/
 jsconfig.json
 
 # Ruby
