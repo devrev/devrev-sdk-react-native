@@ -3,53 +3,54 @@
 DevRev SDK, used for integrating DevRev services into your React Native and Expo apps.
 
 - [DevRev SDK for React Native and Expo](#devrev-sdk-for-react-native-and-expo)
-	- [Quickstart](#quickstart)
-		- [Requirements](#requirements)
-		- [Installation](#installation)
-			- [Expo](#expo)
-		- [Set up the DevRev SDK](#set-up-the-devrev-sdk)
-	- [Features](#features)
-		- [Identification](#identification)
-			- [Identify an unverified user](#identify-an-unverified-user)
-			- [Identify a verified user](#identify-a-verified-user)
-				- [Generate an AAT](#generate-an-aat)
-				- [Exchange your AAT for a session token](#exchange-your-aat-for-a-session-token)
-				- [Identify the verified user](#identify-the-verified-user)
-			- [Update the user](#update-the-user)
-			- [Logout](#logout)
-		- [Identity model](#identity-model)
-			- [Properties](#properties)
-				- [User traits](#user-traits)
-				- [Organization traits](#organization-traits)
-				- [Account traits](#account-traits)
-		- [Support chat](#support-chat)
-			- [Create a new support conversation](#create-a-new-support-conversation)
-		- [In-app link handling](#in-app-link-handling)
-		- [In-app link callback](#in-app-link-callback)
-		- [Dynamic theme configuration](#dynamic-theme-configuration)
-		- [Analytics](#analytics)
-		- [Session analytics](#session-analytics)
-			- [Opt in or out](#opt-in-or-out)
-			- [Session recording](#session-recording)
-			- [Session properties](#session-properties)
-			- [Mask sensitive data](#mask-sensitive-data)
-			- [Mask elements inside web views](#mask-elements-inside-web-views)
-			- [User interaction tracking](#user-interaction-tracking)
-			- [Timers](#timers)
-			- [Track screens](#track-screens)
-			- [Manage screen transitions (Android only)](#manage-screen-transitions-android-only)
-		- [Push notifications](#push-notifications)
-			- [Configuration](#configuration)
-			- [Register for push notifications](#register-for-push-notifications)
-			- [Unregister from push notifications](#unregister-from-push-notifications)
-			- [Handle push notifications](#handle-push-notifications)
-				- [Android](#android)
-				- [iOS](#ios)
-	- [Sample app (without framework)](#sample-app-without-framework)
-	- [Sample app (Expo)](#sample-app-expo)
-	- [Troubleshooting](#troubleshooting)
-		- [ProGuard (Android only)](#proguard-android-only)
-	- [Migration Guide](#migration-guide)
+  - [Quickstart](#quickstart)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+      - [Expo](#expo)
+    - [Set up the DevRev SDK](#set-up-the-devrev-sdk)
+  - [Features](#features)
+    - [Identification](#identification)
+      - [Identify an unverified user](#identify-an-unverified-user)
+      - [Identify a verified user](#identify-a-verified-user)
+        - [Generate an AAT](#generate-an-aat)
+        - [Exchange your AAT for a session token](#exchange-your-aat-for-a-session-token)
+        - [Identify the verified user](#identify-the-verified-user)
+      - [Update the user](#update-the-user)
+      - [Logout](#logout)
+    - [Identity model](#identity-model)
+      - [Properties](#properties)
+        - [User traits](#user-traits)
+        - [Organization traits](#organization-traits)
+        - [Account traits](#account-traits)
+    - [Support chat](#support-chat)
+      - [Create a new support conversation](#create-a-new-support-conversation)
+    - [In-app link handling](#in-app-link-handling)
+    - [In-app link callback](#in-app-link-callback)
+    - [Dynamic theme configuration](#dynamic-theme-configuration)
+    - [Analytics](#analytics)
+    - [Session analytics](#session-analytics)
+      - [Opt in or out](#opt-in-or-out)
+      - [Session recording](#session-recording)
+      - [Session properties](#session-properties)
+      - [Mask sensitive data](#mask-sensitive-data)
+      - [Mask elements inside web views](#mask-elements-inside-web-views)
+      - [User interaction tracking](#user-interaction-tracking)
+      - [Timers](#timers)
+      - [Capture errors](#capture-errors)
+      - [Track screens](#track-screens)
+      - [Manage screen transitions (Android only)](#manage-screen-transitions-android-only)
+    - [Push notifications](#push-notifications)
+      - [Configuration](#configuration)
+      - [Register for push notifications](#register-for-push-notifications)
+      - [Unregister from push notifications](#unregister-from-push-notifications)
+      - [Handle push notifications](#handle-push-notifications)
+        - [Android](#android)
+        - [iOS](#ios)
+  - [Sample app (without framework)](#sample-app-without-framework)
+  - [Sample app (Expo)](#sample-app-expo)
+  - [Troubleshooting](#troubleshooting)
+    - [ProGuard (Android only)](#proguard-android-only)
+  - [Migration Guide](#migration-guide)
 
 ## Quickstart
 
@@ -477,6 +478,41 @@ To stop a timer, use the following method:
 
 ```typescript
 DevRev.endTimer(name: string, properties: { [key: string]: string })
+```
+
+#### Capture errors
+
+You can report a handled error from a catch block using the `captureError` function.
+
+This ensures that even if the error is handled in your app, it will still be logged for diagnostics.
+
+```typescript
+DevRev.captureError(
+    error: Error | string,
+    tag: string
+)
+```
+
+**Example:**
+
+```typescript
+try {
+} catch (error) {
+    DevRev.captureError(
+        error,
+        'network-failure'
+    );
+}
+```
+
+**Example with Error:**
+
+```typescript
+try {
+    throw new Error('Something went wrong');
+} catch (error) {
+    DevRev.captureError(error, 'custom-error');
+}
 ```
 
 #### Track screens

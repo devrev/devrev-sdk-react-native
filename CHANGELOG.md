@@ -4,6 +4,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.3] - 2025-12-18
+
+### Added
+- Added a capture error API to allow apps to report runtime errors through the SDK (Android).
+
+### Changed
+- Refined rage tap detection logic to avoid misclassifying double taps as rage taps (Android).
+- Optimized session recording and network request handling to reduce overhead during active sessions (Android).
+
+### Fixed
+- Fixed timer response rounding to return accurate duration values.
+- Fixed incorrect engagement time calculation in crash scenarios.
+- Fixed ANRs occurring during SDK initialization on Android.
+
+
+## [2.2.2] - 2025-11-26
+
+### Added
+- Support for session capturing on Android 16 devices.
+- Support for tracking hybrid platforms and their versions.
+- iOS only: Added automatic restoration of sessions lost when the app is killed.
+
+### Changed
+- Improved masking behavior on `RecyclerView` scrolls.
+- Improved session upload reliability and stability.
+- Optimized network bandwidth usage.
+- iOS only: Improved crash log parsing and formatting for clearer diagnostics.
+
+### Fixed
+- Fixed an issue in the logout flow.
+
 ## [2.2.1] - 2025-10-17
 
 ### Added
