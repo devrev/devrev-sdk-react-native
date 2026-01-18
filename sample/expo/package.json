@@ -22,7 +22,7 @@
     "expo": "^53.0.0",
     "expo-build-properties": "~0.14.8",
     "expo-firebase-messaging": "^2.0.0",
-    "expo-notifications": "~0.31.4",
+    "expo-notifications": "~0.32.15",
     "expo-system-ui": "~5.0.11",
     "react": "19.0.0",
     "react-native": "0.79.5",
