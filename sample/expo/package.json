@@ -24,7 +24,7 @@
     "expo-firebase-messaging": "^2.0.0",
     "expo-notifications": "~0.31.4",
     "expo-system-ui": "~5.0.11",
-    "react": "19.0.0",
+    "react": "19.2.3",
     "react-native": "0.79.5",
     "react-native-device-info": "^14.0.2",
     "react-native-gesture-handler": "~2.24.0",
