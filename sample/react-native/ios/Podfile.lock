@@ -1,6 +1,6 @@
 PODS:
   - boost (1.84.0)
-  - devrev-sdk-react-native (2.2.1):
+  - devrev-sdk-react-native (2.2.4):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2144,7 +2144,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  devrev-sdk-react-native: 1444b3f76c3954dcf104e92c73a9b96d69ec0738
+  devrev-sdk-react-native: 4a55bcbfa1e43f3a9d0f9ab4462e79816e2fd729
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
   FBLazyVector: 84b955f7b4da8b895faf5946f73748267347c975
