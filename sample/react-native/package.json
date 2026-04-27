@@ -15,7 +15,9 @@
     "@react-native-firebase/installations": "^21.0.0",
     "@react-native-firebase/messaging": "^21.0.0",
     "react-native-device-info": "^14.0.1",
+    "react-native-image-picker": "^8.2.1",
     "react-native-notifications": "^5.1.0",
+    "react-native-vision-camera": "^4.7.3",
     "react-native-webview": "^13.15.0"
   },
   "devDependencies": {

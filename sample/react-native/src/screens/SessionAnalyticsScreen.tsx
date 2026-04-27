@@ -43,6 +43,17 @@ const TimerButtons = [
   },
 ] as const;
 
+const MediaButtons = [
+  {
+    text: 'Open Camera',
+    screenname: 'CameraScreen',
+  },
+  {
+    text: 'Gallery Image Upload',
+    screenname: 'ImageUploadScreen',
+  },
+] as const;
+
 const OnDemandSessionButtons = [
   {
     text: 'Process All On-Demand Sessions',
@@ -144,6 +155,17 @@ const SessionAnalyticsScreen: React.FC<{ navigation: any }> = ({
           <TouchableOpacityButton
             key={index}
             onPress={button.onPress}
+            buttonText={button.text}
+            buttonStyle={commonStyles.button}
+            textStyle={commonStyles.buttonText}
+          />
+        ))}
+
+        <Text style={commonStyles.heading}>Media</Text>
+        {MediaButtons.map((button, index) => (
+          <TouchableOpacityButton
+            key={index}
+            onPress={() => navigation.navigate(button.screenname)}
             buttonText={button.text}
             buttonStyle={commonStyles.button}
             textStyle={commonStyles.buttonText}

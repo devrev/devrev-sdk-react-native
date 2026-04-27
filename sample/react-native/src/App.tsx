@@ -13,6 +13,8 @@ import HomeScreen from './screens/HomeScreen';
 import DelayedScreen from './screens/DelayedScreen';
 import WebViewScreen from './screens/WebViewScreen';
 import FlatListScreen from './screens/FlatListScreen';
+import ImageUploadScreen from './screens/ImageUploadScreen';
+import CameraScreen from './screens/CameraScreen';
 import { commonStyles } from './styles/styles';
 
 export type RootStackParamList = {
@@ -24,6 +26,8 @@ export type RootStackParamList = {
   DelayedScreen: undefined;
   WebViewScreen: undefined;
   FlatListScreen: undefined;
+  ImageUploadScreen: undefined;
+  CameraScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -64,6 +68,16 @@ const screens = [
     name: 'FlatListScreen',
     component: FlatListScreen,
     title: 'Large Scrollable List',
+  },
+  {
+    name: 'CameraScreen',
+    component: CameraScreen,
+    title: 'Camera',
+  },
+  {
+    name: 'ImageUploadScreen',
+    component: ImageUploadScreen,
+    title: 'Gallery Upload',
   },
 ] as const;
 

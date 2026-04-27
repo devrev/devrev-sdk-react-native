@@ -5,13 +5,15 @@ import {
   StyleSheet,
   type TextStyle,
   type ViewStyle,
+  StyleProp,
 } from 'react-native';
 
 interface TouchableOpacityProps {
   onPress: () => void;
   buttonText: string;
-  buttonStyle?: ViewStyle;
-  textStyle?: TextStyle;
+  buttonStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  disabled?: boolean;
 }
 
 const TouchableOpacityButton: React.FC<TouchableOpacityProps> = ({
@@ -19,9 +21,14 @@ const TouchableOpacityButton: React.FC<TouchableOpacityProps> = ({
   buttonText,
   buttonStyle,
   textStyle,
+  disabled = false,
 }) => {
   return (
-    <TouchableOpacity style={[styles.button, buttonStyle]} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, buttonStyle]}
+      onPress={onPress}
+      disabled={disabled}
+    >
       <Text style={[styles.buttonText, textStyle]}>{buttonText}</Text>
     </TouchableOpacity>
   );

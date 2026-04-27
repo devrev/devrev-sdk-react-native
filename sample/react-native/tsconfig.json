@@ -1,13 +1,10 @@
 {
     "compilerOptions": {
+        "esModuleInterop": true,
         "baseUrl": ".",
         "paths": {
-            "@devrev/sdk-react-native": [
-                "../../lib/typescript/src"
-            ],
-            "@devrev/sdk-react-native/*": [
-                "../../lib/typescript/src/*"
-            ]
+            "@devrev/sdk-react-native":  ["../../src/index"],
+            "@devrev/sdk-react-native/*": ["../../src/*"],
         },
         "jsx": "react",
     },

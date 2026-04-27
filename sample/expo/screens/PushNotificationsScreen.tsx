@@ -9,40 +9,28 @@ const PushNotificationsScreen: React.FC = () => {
     message: string;
   } | null>(null);
 
-  const handleRegister = async () => {
-    const isRegistered = viewModel.registerDeviceToken();
-    if (await isRegistered) {
-      setShowDialog({
-        title: 'Success',
-        message: 'Successfully registered for push notifications.',
-      });
-    } else {
-      setShowDialog({
-        title: 'Error',
-        message: 'Could not register the device.',
-      });
-    }
+  const registerPushNotifications = () => {
+    viewModel.registerPushNotifications();
+    setShowDialog({
+      title: 'Success',
+      message: 'Successfully registered for push notifications!',
+    });
   };
 
-  const handleUnregister = async () => {
-    const isUnregistered = viewModel.unregisterDevice();
-    if (await isUnregistered) {
-      setShowDialog({
-        title: 'Success',
-        message: 'Successfully unregistered for push notifications.',
-      });
-    } else {
-      setShowDialog({
-        title: 'Error',
-        message: 'Could not unregister the device.',
-      });
-      return;
-    }
+  const unregisterDevice = () => {
+    viewModel.unregisterDevice();
+    setShowDialog({
+      title: 'Success',
+      message: 'Successfully unregistered the device!',
+    });
   };
 
   const buttons = [
-    { text: 'Register for push notifications', onPress: handleRegister },
-    { text: 'Unregister for push notifications', onPress: handleUnregister },
+    {
+      text: 'Register for push notifications',
+      onPress: registerPushNotifications,
+    },
+    { text: 'Unregister for push notifications', onPress: unregisterDevice },
   ] as const;
 
   return (
