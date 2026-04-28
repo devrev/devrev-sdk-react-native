@@ -4,6 +4,40 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [2.3.1] - 2026-04-27
+
+### Fixed
+- Improved session recording stability and reduced resource usage on both platforms.
+- Fixed multiple crashes and ANRs during session recording and app termination.
+- Fixed incorrect session engagement time calculations on Android.
+
+## [2.3.0] - 2026-02-24
+
+### Added
+- Feature configuration for screen capture, auto-start recording, plug chat theme, and remote config (fresh vs cached/lazy fetch).
+- Support for React Native versions >= 0.79.
+
+### Changed
+- Improved frame capture disabled session replays experience.
+- [iOS] Session upload now enforces minimum visit duration before uploading.
+
+### Fixed
+- Fixed a few memory leaks and crashes.
+
+## [2.2.6] - 2026-02-16
+
+### Fixed
+- Fixed an issue with session recordings on QR scan screens on Android. 
+
+## [2.2.5] - 2026-02-02
+
+### Changed
+- Modernized legacy components and aligned for better performance.
+
+### Removed
+- Removed deprecated and non-public iOS APIs.
+
 ## [2.2.4] - 2026-01-29
 
 ### Changed

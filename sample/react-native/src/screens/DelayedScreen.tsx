@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
 import * as DevRev from '@devrev/sdk-react-native';
 import { commonStyles } from '../styles/styles';

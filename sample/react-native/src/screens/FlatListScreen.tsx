@@ -9,7 +9,7 @@ const DATA = Array.from({ length: 100 }, (_, i) => ({
 
 const refs = DATA.map(() => React.createRef<View>());
 
-const CardView = React.forwardRef(({ title }: { title: string }, ref) => (
+const CardView = React.forwardRef<View, { title: string }>(({ title }, ref) => (
   <View ref={ref} style={styles.card}>
     <Text style={styles.cardText}>{title}</Text>
   </View>

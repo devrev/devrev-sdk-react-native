@@ -9,6 +9,8 @@ import DelayedScreen from '../screens/DelayScreen';
 import WebViewScreen from '../screens/WebViewScreen';
 import FlatListScreen from '../screens/FlatListScreen';
 import { TouchableOpacity, StyleSheet, Text } from 'react-native';
+import CameraScreen from '../screens/CameraScreen';
+import ImageUploadScreen from '../screens/ImageUpload';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -19,6 +21,8 @@ export type RootStackParamList = {
   DelayScreen: undefined;
   WebViewScreen: undefined;
   FlatListScreen: undefined;
+  ImageUploadScreen: undefined;
+  CameraScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -59,6 +63,16 @@ const screens = [
     name: 'FlatListScreen',
     component: FlatListScreen,
     title: 'Large Scrollable List',
+  },
+  {
+    name: 'CameraScreen',
+    component: CameraScreen,
+    title: 'Camera',
+  },
+  {
+    name: 'ImageUploadScreen',
+    component: ImageUploadScreen,
+    title: 'Gallery Upload',
   },
 ] as const;
 

@@ -68,6 +68,16 @@ const ListViewButton = [
   },
 ] as const;
 
+const MediaButtons = [
+  {
+    text: 'Open Camera',
+    screenname: 'CameraScreen',
+  },
+  {
+    text: 'Gallery Image Upload',
+    screenname: 'ImageUploadScreen',
+  },
+] as const;
 const SessionAnalyticsScreen = ({ navigation }: { navigation: any }) => {
   const sensitiveLabelRef = useRef<Text>(null);
   const unsensitiveLabelRef = useRef<TextInput>(null);
@@ -124,6 +134,17 @@ const SessionAnalyticsScreen = ({ navigation }: { navigation: any }) => {
         <TouchableOpacityButton
           key={index}
           onPress={button.onPress}
+          buttonText={button.text}
+          buttonStyle={styles.button}
+          textStyle={styles.buttonText}
+        />
+      ))}
+
+      <Text style={styles.heading}>Media</Text>
+      {MediaButtons.map((button, index) => (
+        <TouchableOpacityButton
+          key={index}
+          onPress={() => navigation.navigate(button.screenname)}
           buttonText={button.text}
           buttonStyle={styles.button}
           textStyle={styles.buttonText}

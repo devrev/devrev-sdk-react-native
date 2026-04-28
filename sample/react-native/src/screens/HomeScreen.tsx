@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { View, Text, Platform, Animated } from 'react-native';
 import TouchableOpacityButton from '../components/TouchableOpacityButton';
 import { commonStyles } from '../styles/styles';

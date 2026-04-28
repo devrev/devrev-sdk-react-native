@@ -8,6 +8,9 @@ DevRev SDK, used for integrating DevRev services into your React Native and Expo
     - [Installation](#installation)
       - [Expo](#expo)
     - [Set up the DevRev SDK](#set-up-the-devrev-sdk)
+      - [Update the feature configuration](#update-the-feature-configuration)
+      - [Feature configuration reference](#feature-configuration-reference)
+        - [Support widget theme options](#support-widget-theme-options)
   - [Features](#features)
     - [Identification](#identification)
       - [Identify an unverified user](#identify-an-unverified-user)
@@ -60,7 +63,6 @@ DevRev SDK, used for integrating DevRev services into your React Native and Expo
 - For Expo apps, Expo 50.0.0 or later.
 - Android: minimum API level 24.
 - iOS: minimum deployment target 15.1.
-- (Recommended) An SSH key configured locally and registered with [GitHub](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
 
 ### Installation
 
@@ -100,11 +102,88 @@ npm install @devrev/sdk-react-native
 > [!WARNING]
 > The DevRev SDK must be configured before you can use any of its features.
 
-The SDK becomes ready for use once the following configuration method is executed.
+The SDK becomes ready for use once the configuration API is executed.
 
 ```typescript
-DevRev.configure(appID: string)
+DevRev.configure(appID)
 ```
+
+To provide a feature configuration during setup, call the overload that accepts it:
+
+```typescript
+DevRev.configure(appID, featureConfiguration)
+```
+
+For default behavior, call the simpler form:
+
+```typescript
+DevRev.configure('abcdefg12345')
+```
+
+To customize behavior such as frame capture, auto-start recording, or theme preferences, pass a full `FeatureConfiguration` object:
+
+```typescript
+DevRev.configure('abcdefg12345', {
+  enableFrameCapture: false,
+  autoStartRecording: false,
+  prefersDialogMode: false,
+  alwaysUseRemoteConfig: true,
+  supportWidgetTheme: {
+    prefersSystemTheme: true,
+  },
+});
+```
+
+#### Update the feature configuration
+
+You can adjust the feature configuration without reconfiguring the SDK. Pass a **full** `FeatureConfiguration` object (all properties are required):
+
+```typescript
+DevRev.updateFeatureConfiguration({
+  enableFrameCapture: true,
+  autoStartRecording: true,
+  prefersDialogMode: false,
+  alwaysUseRemoteConfig: true,
+  supportWidgetTheme: {
+    prefersSystemTheme: true,
+  },
+});
+```
+
+#### Feature configuration reference
+
+`FeatureConfiguration` controls how the SDK behaves both during initial setup and when calling `DevRev.updateFeatureConfiguration(...)`. All properties are required when providing a feature configuration.
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `enableFrameCapture` | `boolean` | `true` | Enables the screen capture pipeline used by session replay. |
+| `autoStartRecording` | `boolean` | `true` | Automatically starts recording after the SDK finishes remote configuration. |
+| `prefersDialogMode` | `boolean` | `false` | Prefer dialog mode for the support UI (Android only). |
+| `alwaysUseRemoteConfig` | `boolean` | `true` | Always use remote config. |
+| `supportWidgetTheme` | `SupportWidgetTheme` | — | Controls the appearance of the in-app support widget, including dynamic theme behavior. |
+
+##### Support widget theme options
+
+`SupportWidgetTheme` lets you fine-tune the support UI. Use the `supportWidgetTheme` property inside your feature configuration.
+
+```typescript
+const customTheme = {
+  prefersSystemTheme: false,
+  primaryTextColor: '#1F2933',
+  accentColor: '#F97316',
+  spacing: {
+    bottom: '20px',
+    side: '16px',
+  },
+};
+```
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `prefersSystemTheme` | `boolean` | `true` | Follows the device appearance when `true`; otherwise uses your custom colors. |
+| `primaryTextColor` | `string?` | — | Hex color string (e.g. `'#000000'`, `'#1F2933'`) for primary text in the support widget. |
+| `accentColor` | `string?` | — | Hex color string (e.g. `'#F97316'`, `'#FF0000'`) applied to buttons and highlights. |
+| `spacing` | `{ [key: string]: string }?` | — | CSS-like spacing overrides (`bottom` and `side` keys are recognized). |
 
 ## Features
 

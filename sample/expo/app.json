@@ -47,6 +47,19 @@
         "../../app.plugin.js"
       ],
       [
+        "expo-image-picker",
+        {
+          "photosPermission": "App needs access to your photos."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
         "expo-notifications",
         {
           "icon": "./assets/splash-icon.png",
@@ -63,7 +76,8 @@
             "use_modular_headers!": true
           }
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "extra": {
       "eas": {

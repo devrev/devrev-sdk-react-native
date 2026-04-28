@@ -3,8 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "devrev-sdk-react-native": ["../../src/index"],
-      "devrev-sdk-react-native/*": ["../../src/*"]
+      "@devrev/sdk-react-native": ["../../src/index"],
+      "@devrev/sdk-react-native/*": ["../../src/*"]
     }
   }
 }
