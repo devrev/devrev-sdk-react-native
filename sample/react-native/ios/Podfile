@@ -30,5 +30,38 @@ target 'DevRevSDKSampleRN' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    # Embed SPM-resolved DevRevSDK.framework into the app bundle.
+    # The spm_dependency in the podspec links DevRevSDK to the pod target,
+    # but does not embed it in the app — causing a dyld "Library not loaded" crash.
+    project_path = File.join(__dir__, "DevRevSDKSampleRN.xcodeproj")
+    project = Xcodeproj::Project.open(project_path)
+    app_target = project.targets.find { |t| t.name == "DevRevSDKSampleRN" }
+
+    if app_target
+      phase_name = "[DevRev] Embed SPM Frameworks"
+      existing = app_target.shell_script_build_phases.find { |p| p.name == phase_name }
+      unless existing
+        phase = app_target.new_shell_script_build_phase(phase_name)
+        phase.shell_script = <<~'SCRIPT'
+          FRAMEWORKS_TO_EMBED=("DevRevSDK")
+          for fw in "${FRAMEWORKS_TO_EMBED[@]}"; do
+            FW_PATH="${BUILT_PRODUCTS_DIR}/PackageFrameworks/${fw}.framework"
+            if [ ! -d "$FW_PATH" ]; then
+              FW_PATH="${BUILT_PRODUCTS_DIR}/${fw}.framework"
+            fi
+            if [ -d "$FW_PATH" ]; then
+              DEST="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+              mkdir -p "$DEST"
+              rsync -av --delete "$FW_PATH" "$DEST/"
+              if [ "${CODE_SIGNING_ALLOWED:-NO}" = "YES" ] && [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]; then
+                codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "$DEST/${fw}.framework"
+              fi
+            fi
+          done
+        SCRIPT
+      end
+      project.save
+    end
   end
 end

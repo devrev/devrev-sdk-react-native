@@ -11,6 +11,9 @@ import FlatListScreen from '../screens/FlatListScreen';
 import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 import CameraScreen from '../screens/CameraScreen';
 import ImageUploadScreen from '../screens/ImageUpload';
+import QRScannerScreen from '../screens/QRScannerScreen';
+import LiveChartScreen from '../screens/LiveChartScreen';
+import HeavyUIScreen from '../screens/HeavyUIScreen';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -23,6 +26,9 @@ export type RootStackParamList = {
   FlatListScreen: undefined;
   ImageUploadScreen: undefined;
   CameraScreen: undefined;
+  QRScannerScreen: undefined;
+  LiveChartScreen: undefined;
+  HeavyUIScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -73,6 +79,21 @@ const screens = [
     name: 'ImageUploadScreen',
     component: ImageUploadScreen,
     title: 'Gallery Upload',
+  },
+  {
+    name: 'QRScannerScreen',
+    component: QRScannerScreen,
+    title: 'QR Scanner',
+  },
+  {
+    name: 'LiveChartScreen',
+    component: LiveChartScreen,
+    title: 'Real Time UI',
+  },
+  {
+    name: 'HeavyUIScreen',
+    component: HeavyUIScreen,
+    title: 'Complex UI with Animations',
   },
 ] as const;
 
