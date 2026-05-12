@@ -77,7 +77,15 @@
           }
         }
       ],
-      "expo-asset"
+      [
+        "expo-asset",
+        {
+          "assets": [
+            "./assets/devrev.mp4"
+          ]
+        }
+      ],
+      "expo-video"
     ],
     "extra": {
       "eas": {

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   ScrollView,
   Text,
@@ -77,7 +77,23 @@ const MediaButtons = [
     text: 'Gallery Image Upload',
     screenname: 'ImageUploadScreen',
   },
+  {
+    text: 'QR Scanner',
+    screenname: 'QRScannerScreen',
+  },
 ] as const;
+
+const HeavyUIButtons = [
+  {
+    text: 'Real Time UI',
+    screenname: 'LiveChartScreen',
+  },
+  {
+    text: 'Complex UI with Animations',
+    screenname: 'HeavyUIScreen',
+  },
+] as const;
+
 const SessionAnalyticsScreen = ({ navigation }: { navigation: any }) => {
   const sensitiveLabelRef = useRef<Text>(null);
   const unsensitiveLabelRef = useRef<TextInput>(null);
@@ -87,25 +103,31 @@ const SessionAnalyticsScreen = ({ navigation }: { navigation: any }) => {
 
   DevRev.trackScreen('Session Analytics Screen');
 
-  if (sensitiveLabelRef.current) {
-    const sensitiveLabelHandle = findNodeHandle(sensitiveLabelRef.current);
-    if (sensitiveLabelHandle) {
-      try {
-        DevRev.markSensitiveViews([`devrev-mask-${sensitiveLabelHandle}`]);
-      } catch (error) {
-        console.error('Failed to mark view as sensitive:', error);
+  useEffect(() => {
+    if (sensitiveLabelRef.current) {
+      const sensitiveLabelHandle = findNodeHandle(sensitiveLabelRef.current);
+      if (sensitiveLabelHandle) {
+        try {
+          DevRev.markSensitiveViews([sensitiveLabelHandle]);
+        } catch (error) {
+          console.error('Failed to mark view as sensitive:', error);
+        }
       }
     }
 
-    const unsensitiveLabelHandle = findNodeHandle(unsensitiveLabelRef.current);
-    if (unsensitiveLabelHandle) {
-      try {
-        DevRev.markSensitiveViews([`devrev-mask-${unsensitiveLabelHandle}`]);
-      } catch (error) {
-        console.error('Failed to mark view as unsensitive:', error);
+    if (unsensitiveLabelRef.current) {
+      const unsensitiveLabelHandle = findNodeHandle(
+        unsensitiveLabelRef.current
+      );
+      if (unsensitiveLabelHandle) {
+        try {
+          DevRev.unmarkSensitiveViews([unsensitiveLabelHandle]);
+        } catch (error) {
+          console.error('Failed to mark view as unsensitive:', error);
+        }
       }
     }
-  }
+  }, []);
 
   const displayScreenTransition = () => {
     if (Platform.OS === 'android') {
@@ -142,6 +164,17 @@ const SessionAnalyticsScreen = ({ navigation }: { navigation: any }) => {
 
       <Text style={styles.heading}>Media</Text>
       {MediaButtons.map((button, index) => (
+        <TouchableOpacityButton
+          key={index}
+          onPress={() => navigation.navigate(button.screenname)}
+          buttonText={button.text}
+          buttonStyle={styles.button}
+          textStyle={styles.buttonText}
+        />
+      ))}
+
+      <Text style={styles.heading}>Heavy UI</Text>
+      {HeavyUIButtons.map((button, index) => (
         <TouchableOpacityButton
           key={index}
           onPress={() => navigation.navigate(button.screenname)}

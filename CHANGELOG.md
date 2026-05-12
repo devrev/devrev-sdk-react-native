@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.2] - 2026-05-12
+
+### Fixed
+- Fixed an issue where Ktor classes were getting stripped due to proguard rules.
+- Fixed an issue related to blank user identifier in identification calls.
+- Added a fix for masking stability during scrolls. 
+- Fixed an issue related to garbage characters in custom events.
+- Fixed an issue with empty crash types in iOS.
+- Fixed an issue with push notifications not being delivered in sandbox environments in iOS.
 
 ## [2.3.1] - 2026-04-27
 
@@ -28,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.2.6] - 2026-02-16
 
 ### Fixed
-- Fixed an issue with session recordings on QR scan screens on Android. 
+- Fixed an issue with session recordings on QR scan screens on Android.
 
 ## [2.2.5] - 2026-02-02
 

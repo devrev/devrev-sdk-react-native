@@ -52,6 +52,21 @@ const MediaButtons = [
     text: 'Gallery Image Upload',
     screenname: 'ImageUploadScreen',
   },
+  {
+    text: 'QR Scanner',
+    screenname: 'QRScannerScreen',
+  },
+] as const;
+
+const HeavyUIButtons = [
+  {
+    text: 'Real Time UI',
+    screenname: 'LiveChartScreen',
+  },
+  {
+    text: 'Complex UI with Animations',
+    screenname: 'HeavyUIScreen',
+  },
 ] as const;
 
 const OnDemandSessionButtons = [
@@ -163,6 +178,17 @@ const SessionAnalyticsScreen: React.FC<{ navigation: any }> = ({
 
         <Text style={commonStyles.heading}>Media</Text>
         {MediaButtons.map((button, index) => (
+          <TouchableOpacityButton
+            key={index}
+            onPress={() => navigation.navigate(button.screenname)}
+            buttonText={button.text}
+            buttonStyle={commonStyles.button}
+            textStyle={commonStyles.buttonText}
+          />
+        ))}
+
+        <Text style={commonStyles.heading}>Heavy UI</Text>
+        {HeavyUIButtons.map((button, index) => (
           <TouchableOpacityButton
             key={index}
             onPress={() => navigation.navigate(button.screenname)}

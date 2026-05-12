@@ -16,6 +16,9 @@ import FlatListScreen from './screens/FlatListScreen';
 import ImageUploadScreen from './screens/ImageUploadScreen';
 import CameraScreen from './screens/CameraScreen';
 import { commonStyles } from './styles/styles';
+import QRScannerScreen from './screens/QRScannerScreen';
+import LiveChartScreen from './screens/LiveChartScreen';
+import HeavyUIScreen from './screens/HeavyUIScreen';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -28,6 +31,9 @@ export type RootStackParamList = {
   FlatListScreen: undefined;
   ImageUploadScreen: undefined;
   CameraScreen: undefined;
+  QRScannerScreen: undefined;
+  LiveChartScreen: undefined;
+  HeavyUIScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -79,6 +85,21 @@ const screens = [
     component: ImageUploadScreen,
     title: 'Gallery Upload',
   },
+  {
+    name: 'QRScannerScreen',
+    component: QRScannerScreen,
+    title: 'QR Scanner',
+  },
+  {
+    name: 'LiveChartScreen',
+    component: LiveChartScreen,
+    title: 'Real Time UI',
+  },
+  {
+    name: 'HeavyUIScreen',
+    component: HeavyUIScreen,
+    title: 'Complex UI with Animations',
+  },
 ] as const;
 
 const createScreen = (
@@ -110,7 +131,7 @@ const createScreen = (
 const App = () => {
   React.useEffect(() => {
     try {
-      DevRev.configure('YOUR_APP_ID');
+      DevRev.configure('DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vM2ZBSEVDOnBsdWdfc2V0dGluZy8xX198fF9fMjAyNC0wNy0yOSAwOTozMjoxNC4xNjU1Mjc4NTggKzAwMDAgVVRDxlxendsDvRv');
       DevRev.setShouldDismissModalsOnOpenLink(true);
       PushNotificationsService.configure();
     } catch (error) {
