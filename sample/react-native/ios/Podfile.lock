@@ -2,7 +2,7 @@ PODS:
   - boost (1.84.0)
   - BVLinearGradient (2.8.3):
     - React-Core
-  - devrev-sdk-react-native (2.3.2):
+  - devrev-sdk-react-native (2.3.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1933,7 +1933,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNPermissions (5.5.1):
+  - RNSVG (15.15.4):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1956,33 +1956,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
+    - RNSVG/common (= 15.15.4)
     - Yoga
-  - RNSVG (15.15.5):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.11.18.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-hermes
-    - React-ImageManager
-    - React-jsi
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - RNSVG/common (= 15.15.5)
-    - Yoga
-  - RNSVG/common (15.15.5):
+  - RNSVG/common (15.15.4):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2099,7 +2075,6 @@ DEPENDENCIES:
   - "RNFBInstallations (from `../node_modules/@react-native-firebase/installations`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - VisionCamera (from `../node_modules/react-native-vision-camera`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -2283,8 +2258,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNPermissions:
-    :path: "../node_modules/react-native-permissions"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   VisionCamera:
@@ -2295,7 +2268,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   BVLinearGradient: cb006ba232a1f3e4f341bb62c42d1098c284da70
-  devrev-sdk-react-native: 146e6600a96c7bdb545e45c8d9af0aadd5fdf0f2
+  devrev-sdk-react-native: c39d15eaac67cdb71efbf3b939baffd9a34fcf32
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
   FBLazyVector: b60fe06f0f15b7d7408f169442176e69e8eeacde
@@ -2385,12 +2358,11 @@ SPEC CHECKSUMS:
   RNFBInstallations: 0af3ed83ee414205ae466cc5dde4864c01179f99
   RNFBMessaging: 6857871d9dff8f26b0c325fc7d97ba69cb77d213
   RNGestureHandler: ee4fab31b7325a6090ccd19392800a5e0911a2d5
-  RNPermissions: a1e9844aad4410e084c81ce16458cd6befbf86aa
-  RNSVG: 76243ae0219c97fc021489356341a1d044b08466
+  RNSVG: 0917f41364761ab9f5f488a51c3d10428c3c8dd1
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   VisionCamera: 7187b3dac1ff3071234ead959ce311875748e14f
   Yoga: fce72270ebed754904bbe5e18bb05cda3c3075db
 
-PODFILE CHECKSUM: 17c41740150e0aa30fa43f2bef2bda13b6c352b6
+PODFILE CHECKSUM: 77a3bbff7d76f2ae1551ede8ef62e45eff2a9e3b
 
 COCOAPODS: 1.16.2
