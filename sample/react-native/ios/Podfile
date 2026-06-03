@@ -22,46 +22,114 @@ target 'DevRevSDKSampleRN' do
     :path => config[:reactNativePath],
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+end
 
-  post_install do |installer|
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
+post_install do |installer|
+  react_native_post_install(
+    installer,
+    '../node_modules/react-native',
+    :mac_catalyst_enabled => false,
+    # :ccache_enabled => true
+  )
+end
+
+# Run after CocoaPods integrates the user project so generated files are final.
+post_integrate do |installer|
+  # CocoaPods SPM integration can assign DevRevSDK the same UUID as the Pods project
+  # root object (46EB2E00000000), which corrupts Pods.xcodeproj and prevents Xcode from
+  # loading any pod dependencies (manifesting as "No such module 'React'").
+  pods_pbxproj_path = File.join(installer.sandbox.root, 'Pods.xcodeproj', 'project.pbxproj')
+  if File.exist?(pods_pbxproj_path)
+    content = File.read(pods_pbxproj_path)
+    root_uuid = '46EB2E00000000'
+    devrev_product_uuid = '46EB2E00033F40'
+    package_ref_uuid = '46EB2E00033F30'
+    spm_collision = content.match?(
+      /#{root_uuid} \/\* DevRevSDK \*\/ = \{\n\t\t\tisa = XCSwiftPackageProductDependency;/,
     )
 
-    # Embed SPM-resolved DevRevSDK.framework into the app bundle.
-    # The spm_dependency in the podspec links DevRevSDK to the pod target,
-    # but does not embed it in the app — causing a dyld "Library not loaded" crash.
-    project_path = File.join(__dir__, "DevRevSDKSampleRN.xcodeproj")
-    project = Xcodeproj::Project.open(project_path)
-    app_target = project.targets.find { |t| t.name == "DevRevSDKSampleRN" }
+    if spm_collision && !content.include?('isa = PBXProject')
+      content = content.gsub(
+        "#{root_uuid} /* DevRevSDK */",
+        "#{devrev_product_uuid} /* DevRevSDK */",
+      )
+      target_uuids = content.scan(
+        /\t\t([A-F0-9]+) \/\* .+ \*\/ = \{\n\t\t\tisa = PBX(?:Native|Aggregate)Target;/,
+      ).flatten
+      targets_section = target_uuids.map { |uuid| "\t\t\t\t#{uuid}," }.join("\n")
+      pbx_project = <<~PROJECT
+        /* Begin PBXProject section */
+        \t\t#{root_uuid} /* Project object */ = {
+        \t\t\tisa = PBXProject;
+        \t\t\tattributes = {
+        \t\t\t\tBuildIndependentTargetsInParallel = YES;
+        \t\t\t\tLastSwiftUpdateCheck = 1600;
+        \t\t\t\tLastUpgradeCheck = 1600;
+        \t\t\t};
+        \t\t\tbuildConfigurationList = 46EB2E00000030 /* Build configuration list for PBXProject "Pods" */;
+        \t\t\tcompatibilityVersion = "Xcode 8.0";
+        \t\t\tdevelopmentRegion = en;
+        \t\t\thasScannedForEncodings = 0;
+        \t\t\tknownRegions = (
+        \t\t\t\ten,
+        \t\t\t\tBase,
+        \t\t\t);
+        \t\t\tmainGroup = 46EB2E00000010;
+        \t\t\tpackageReferences = (
+        \t\t\t\t#{package_ref_uuid} /* XCRemoteSwiftPackageReference "devrev-sdk-ios" */,
+        \t\t\t);
+        \t\t\tproductRefGroup = 46EB2E00000020 /* Products */;
+        \t\t\tprojectDirPath = "";
+        \t\t\tprojectRoot = "";
+        \t\t\ttargets = (
+        #{targets_section}
+        \t\t\t);
+        \t\t};
+        /* End PBXProject section */
 
-    if app_target
-      phase_name = "[DevRev] Embed SPM Frameworks"
-      existing = app_target.shell_script_build_phases.find { |p| p.name == phase_name }
-      unless existing
-        phase = app_target.new_shell_script_build_phase(phase_name)
-        phase.shell_script = <<~'SCRIPT'
-          FRAMEWORKS_TO_EMBED=("DevRevSDK")
-          for fw in "${FRAMEWORKS_TO_EMBED[@]}"; do
-            FW_PATH="${BUILT_PRODUCTS_DIR}/PackageFrameworks/${fw}.framework"
-            if [ ! -d "$FW_PATH" ]; then
-              FW_PATH="${BUILT_PRODUCTS_DIR}/${fw}.framework"
-            fi
-            if [ -d "$FW_PATH" ]; then
-              DEST="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
-              mkdir -p "$DEST"
-              rsync -av --delete "$FW_PATH" "$DEST/"
-              if [ "${CODE_SIGNING_ALLOWED:-NO}" = "YES" ] && [ -n "${EXPANDED_CODE_SIGN_IDENTITY:-}" ]; then
-                codesign --force --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "$DEST/${fw}.framework"
-              fi
-            fi
-          done
-        SCRIPT
-      end
-      project.save
+      PROJECT
+      content = content.sub(
+        '/* Begin XCSwiftPackageProductDependency section */',
+        "#{pbx_project}/* Begin XCSwiftPackageProductDependency section */",
+      )
+      File.write(pods_pbxproj_path, content)
     end
+  end
+
+  # DevRevSDK is pulled in via SPM (see devrev-sdk-react-native.podspec). CocoaPods embeds
+  # devrev_sdk_react_native.framework but not the transitive SPM product DevRevSDK.framework,
+  # which causes a dyld crash at launch on device.
+  frameworks_support_dir = File.join(
+    installer.sandbox.root,
+    'Target Support Files',
+    'Pods-DevRevSDKSampleRN',
+  )
+  devrev_bridge_framework_line =
+    'install_framework "${BUILT_PRODUCTS_DIR}/devrev-sdk-react-native/devrev_sdk_react_native.framework"'
+  devrev_sdk_install_block = <<~'SHELL'.gsub(/^/, '  ')
+    if [ -r "${BUILT_PRODUCTS_DIR}/DevRevSDK.framework" ]; then
+      install_framework "${BUILT_PRODUCTS_DIR}/DevRevSDK.framework"
+    elif [ -r "${BUILT_PRODUCTS_DIR}/devrev-sdk-react-native/DevRevSDK.framework" ]; then
+      install_framework "${BUILT_PRODUCTS_DIR}/devrev-sdk-react-native/DevRevSDK.framework"
+    fi
+  SHELL
+
+  frameworks_script = File.join(
+    frameworks_support_dir,
+    'Pods-DevRevSDKSampleRN-frameworks.sh',
+  )
+  if File.exist?(frameworks_script)
+    script_contents = File.read(frameworks_script)
+    script_contents = script_contents.gsub(
+      /^\s*install_framework "\$\{BUILT_PRODUCTS_DIR\}\/DevRevSDK\.framework"\n?/m,
+      '',
+    )
+    unless script_contents.include?('devrev-sdk-react-native/DevRevSDK.framework')
+      script_contents = script_contents.gsub(
+        devrev_bridge_framework_line,
+        "#{devrev_bridge_framework_line}\n#{devrev_sdk_install_block}",
+      )
+    end
+    File.write(frameworks_script, script_contents)
   end
 end

@@ -2,29 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>API_KEY</key>
-	<string>AIzaSyAP61uxqfXCAvpmtqPU_k5XR35Kmx2IU-c</string>
-	<key>GCM_SENDER_ID</key>
-	<string>91712188040</string>
-	<key>PLIST_VERSION</key>
-	<string>1</string>
-	<key>BUNDLE_ID</key>
-	<string>ai.devrev.sdk.sample.swiftui</string>
-	<key>PROJECT_ID</key>
-	<string>devrev-sdk-samples</string>
-	<key>STORAGE_BUCKET</key>
-	<string>devrev-sdk-samples.firebasestorage.app</string>
-	<key>IS_ADS_ENABLED</key>
-	<false></false>
-	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
-	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
-	<key>IS_GCM_ENABLED</key>
-	<true></true>
-	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
-	<key>GOOGLE_APP_ID</key>
-	<string>1:91712188040:ios:8dbb42b4deb282afdf393d</string>
+    <key>API_KEY</key>
+    <string>DUMMY_API_KEY</string>
+    <key>CLIENT_ID</key>
+    <string>DUMMY_CLIENT_ID</string>
+    <key>GOOGLE_APP_ID</key>
+    <string>1:1234567890:ios:abcdef123456</string>
+    <key>PROJECT_ID</key>
+    <string>dummy-project</string>
+    <key>BUNDLE_ID</key>
+    <string>ai.devrev.sdk.bridge.reactnative.sample</string>
 </dict>
 </plist>

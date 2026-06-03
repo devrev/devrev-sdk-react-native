@@ -679,15 +679,25 @@ DevRev.processPushNotification(JSON.stringify(messageJson));
 
 ##### iOS
 
-On iOS devices, you must pass the received push notification payload to the DevRev SDK for processing. The SDK handles the notification and executes the necessary actions.
+On iOS, the `AppDelegate` must be updated to intercept notification clicks and forward the payload to the SDK.
 
-```typescript
-DevRev.processPushNotification(payload: string)
+In `didFinishLaunchingWithOptions`, set the `UNUserNotificationCenter` delegate:
+
+```swift
+UNUserNotificationCenter.current().delegate = self
 ```
 
-For example:
-```typescript
-DevRev.processPushNotification(JSON.stringify(payload));
+Implement `userNotificationCenter(_:didReceive:)` to pass the notification payload to the SDK:
+
+```swift
+func userNotificationCenter(
+    _ center: UNUserNotificationCenter,
+    didReceive response: UNNotificationResponse
+) async {
+    await DevRev.processPushNotification(
+        response.notification.request.content.userInfo
+    )
+}
 ```
 
 ## Sample app (without framework)

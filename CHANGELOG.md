@@ -4,12 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.4] - 2026-06-03
+
+### Fixed
+- Fixed session recordings associating events with the wrong DevRev workspace.
+- [iOS] Fixed crashes from thread-unsafe access.
+- [Android] Fixed masking issues on rapid scrolls.
+- [Android] Fixed an issue with missing crash types.
+
+## [2.3.3] - 2026-05-26
+
+### Fixed
+- [Android] Implemented web view masking for Canvas Technology.
+- [Android] Fixed an issue with web view masking.
+- [Android] Fixed an issue with masking displacement on fast scrolling.
+
 ## [2.3.2] - 2026-05-12
 
 ### Fixed
 - Fixed an issue where Ktor classes were getting stripped due to proguard rules.
 - Fixed an issue related to blank user identifier in identification calls.
-- Added a fix for masking stability during scrolls. 
+- Added a fix for masking stability during scrolls.
 - Fixed an issue related to garbage characters in custom events.
 - Fixed an issue with empty crash types in iOS.
 - Fixed an issue with push notifications not being delivered in sandbox environments in iOS.
