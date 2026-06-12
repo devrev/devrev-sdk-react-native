@@ -131,7 +131,7 @@ const createScreen = (
 const App = () => {
   React.useEffect(() => {
     try {
-      DevRev.configure('DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vM2ZBSEVDOnBsdWdfc2V0dGluZy8xX198fF9fMjAyNC0wNy0yOSAwOTozMjoxNC4xNjU1Mjc4NTggKzAwMDAgVVRDxlxendsDvRv');
+      DevRev.configure('YOUR_APP_ID');
       DevRev.setShouldDismissModalsOnOpenLink(true);
       PushNotificationsService.configure();
     } catch (error) {
