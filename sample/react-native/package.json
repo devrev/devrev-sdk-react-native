@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@devrev/sdk-react-native": "workspace:*",
-    "@react-native-firebase/app": "^21.0.0",
-    "@react-native-firebase/installations": "^21.0.0",
-    "@react-native-firebase/messaging": "^21.0.0",
+    "@react-native-firebase/app": "^24.0.0",
+    "@react-native-firebase/installations": "^24.0.0",
+    "@react-native-firebase/messaging": "^24.0.0",
     "lottie-react-native": "^7.3.6",
     "react-native-device-info": "^14.0.1",
     "react-native-gifted-charts": "^1.4.74",
@@ -71,6 +71,9 @@
         "safe-area"
       ]
     }
+  },
+  "resolutions": {
+    "protobufjs": ">=7.5.8"
   },
   "peerDependencies": {
     "@react-navigation/native": "^6.0.8",
