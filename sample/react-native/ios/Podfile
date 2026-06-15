@@ -48,12 +48,6 @@ post_integrate do |installer|
       /#{root_uuid} \/\* DevRevSDK \*\/ = \{\n\t\t\tisa = XCSwiftPackageProductDependency;/,
     )
 
-  post_install do |installer|
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
     if spm_collision && !content.include?('isa = PBXProject')
       content = content.gsub(
         "#{root_uuid} /* DevRevSDK */",
