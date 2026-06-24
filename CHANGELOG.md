@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.6] - 2026-06-24
+
+### Changed
+- [iOS] Improved memory usage during offline session replay uploads.
+- Enhanced overall performance during screen navigations.
+
+### Fixed
+- [Android] Fixed an issue related to rapid navigations.
+- [Android] Fixed an ANR related to animated dialog captures.
+- [Android] Fixed an issue related to keyboard scrolls on webviews.
+- [Android] Fixed an issue related to dispatch window callback mutations.
+
+## [2.3.5] - 2026-06-12
+
+### Fixed
+- [iOS] Fixed unknown network type in session events by correctly identifying the cellular data service, radio generation, and Wi‑Fi/cellular transitions.
+- [iOS] Fixed session replay snapshot quality and touch coordinate rendering in landscape orientation.
+- [iOS] Fixed support chat conversation being cleared when a transient modal is dismissed.
+- [iOS] Fixed trait collection initialization crash.
+
 ## [2.3.4] - 2026-06-03
 
 ### Fixed
