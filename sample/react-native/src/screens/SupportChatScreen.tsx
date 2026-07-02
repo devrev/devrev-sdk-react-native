@@ -17,7 +17,7 @@ const SupportChatScreen: React.FC = () => {
       text: 'Create Support Conversation',
       onPress: () => {
         console.log('Creating support conversation');
-        DevRevSDK.createSupportConversation();
+        DevRevSDK.createSupportConversation('Hi, I need help with my account');
       },
     },
   ];
