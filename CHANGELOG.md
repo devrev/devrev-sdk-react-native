@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.8] - 2026-08-04
+
+### Added
+- Added an SDK version filter for session replay, allowing replay to be enabled or disabled for specific SDK versions from the dashboard.
+
+### Fixed
+- [Android] Fixed masks on the base page being dropped while a dialog or modal bottom sheet was open.
+- [Android] Fixed a main-thread deadlock when resolving external masks with Flutter.
+- [Android] Fixed a crash in the screenshot capturer caused by a recycled bitmap on cancel.
+- [Android] Fixed an issue with mask coordinate clipping.
+- [iOS] Fixed a race condition that could affect network event counts during concurrent requests.
+
 ## [2.3.7] - 2026-07-02
 
 ### Added
