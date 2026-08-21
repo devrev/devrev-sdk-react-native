@@ -76,6 +76,41 @@ const OnDemandSessionButtons = [
   },
 ] as const;
 
+const FeatureConfigurationButtons = [
+  {
+    text: 'Enable Frame Capture',
+    onPress: () =>
+      DevRev.updateFeatureConfiguration({
+        enableFrameCapture: true,
+        autoStartRecording: true,
+        prefersDialogMode: false,
+        alwaysUseRemoteConfig: true,
+        supportWidgetTheme: { prefersSystemTheme: true },
+      }),
+  },
+  {
+    text: 'Disable Frame Capture',
+    onPress: () =>
+      DevRev.updateFeatureConfiguration({
+        enableFrameCapture: false,
+        autoStartRecording: true,
+        prefersDialogMode: false,
+        alwaysUseRemoteConfig: true,
+        supportWidgetTheme: { prefersSystemTheme: true },
+      }),
+  },
+] as const;
+
+const CaptureErrorButtons = [
+  {
+    text: 'Capture Error',
+    onPress: () => {
+      const error = new Error('Simulated handled error for testing');
+      DevRev.captureError(error, 'test-error');
+    },
+  },
+] as const;
+
 const WebViewButton = [
   {
     text: 'Open Web View',
@@ -211,6 +246,28 @@ const SessionAnalyticsScreen: React.FC<{ navigation: any }> = ({
           style={commonStyles.input}
           placeholder="Manually Unmasked UI Item"
         />
+
+        <Text style={commonStyles.heading}>Feature Configuration</Text>
+        {FeatureConfigurationButtons.map((button, index) => (
+          <TouchableOpacityButton
+            key={index}
+            onPress={button.onPress}
+            buttonText={button.text}
+            buttonStyle={commonStyles.button}
+            textStyle={commonStyles.buttonText}
+          />
+        ))}
+
+        <Text style={commonStyles.heading}>Error Capture</Text>
+        {CaptureErrorButtons.map((button, index) => (
+          <TouchableOpacityButton
+            key={index}
+            onPress={button.onPress}
+            buttonText={button.text}
+            buttonStyle={commonStyles.button}
+            textStyle={commonStyles.buttonText}
+          />
+        ))}
 
         <Text style={commonStyles.heading}>On-Demand Sessions</Text>
         {OnDemandSessionButtons.map((button, index) => (

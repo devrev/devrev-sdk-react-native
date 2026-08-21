@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.7] - 2026-07-02
+
+### Added
+- Agent response streaming, article search filters, and conversation page header branding added in FeatureConfiguration.
+- Prefill message support when creating support conversations.
+
+### Fixed
+- [Android] Fixed a crash related to NPEs on activities.
+
 ## [2.3.6] - 2026-06-24
 
 ### Changed

@@ -131,6 +131,8 @@ DevRev.configure('abcdefg12345', {
   supportWidgetTheme: {
     prefersSystemTheme: true,
   },
+  enableSupportChatStreaming: true,
+  supportWidgetArticleSearchFilters: articleSearchFilters,
 });
 ```
 
@@ -147,6 +149,8 @@ DevRev.updateFeatureConfiguration({
   supportWidgetTheme: {
     prefersSystemTheme: true,
   },
+  enableSupportChatStreaming: true,
+  supportWidgetArticleSearchFilters: articleSearchFilters,
 });
 ```
 
@@ -161,6 +165,8 @@ DevRev.updateFeatureConfiguration({
 | `prefersDialogMode` | `boolean` | `false` | Prefer dialog mode for the support UI (Android only). |
 | `alwaysUseRemoteConfig` | `boolean` | `true` | Always use remote config. |
 | `supportWidgetTheme` | `SupportWidgetTheme` | — | Controls the appearance of the in-app support widget, including dynamic theme behavior. |
+| `enableSupportChatStreaming` | `boolean?` | `false` | When `true`, enables real-time AI agent response streaming in PLuG conversations (WebSocket streaming, optimistic UI, animated text). |
+| `supportWidgetArticleSearchFilters` | `ArticleSearchFilters?` | — | Optional filters for PLuG article search (widget and CMDK). Applied automatically when the support widget is ready. |
 
 ##### Support widget theme options
 
@@ -175,6 +181,10 @@ const customTheme = {
     bottom: '20px',
     side: '16px',
   },
+  conversationPageOptions: {
+    headerText: 'Support',
+    subheaderText: 'We typically reply in a few minutes',
+  },
 };
 ```
 
@@ -184,6 +194,16 @@ const customTheme = {
 | `primaryTextColor` | `string?` | — | Hex color string (e.g. `'#000000'`, `'#1F2933'`) for primary text in the support widget. |
 | `accentColor` | `string?` | — | Hex color string (e.g. `'#F97316'`, `'#FF0000'`) applied to buttons and highlights. |
 | `spacing` | `{ [key: string]: string }?` | — | CSS-like spacing overrides (`bottom` and `side` keys are recognized). |
+| `conversationPageOptions` | `ConversationPageOptions?` | — | Customizes the conversation page header branding. |
+
+##### Conversation page options
+
+`ConversationPageOptions` customizes the header strings shown on the support conversation page. Both fields are optional — when omitted, the server-configured defaults are used.
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `headerText` | `string?` | — | Custom text for the conversation header. |
+| `subheaderText` | `string?` | — | Custom text for the conversation subheader. Pass a single space (`' '`) to render a blank subheader. |
 
 ## Features
 
@@ -365,7 +385,13 @@ DevRev.showSupport()
 You can initiate a new support conversation directly from your app. This method displays the support chat screen and simultaneously creates a new conversation.
 
 ```typescript
-DevRev.createSupportConversation()
+DevRev.createSupportConversation(prefillMessage?: string)
+```
+
+You can optionally pass a plain-text message to prefill the conversation input field:
+
+```typescript
+DevRev.createSupportConversation('I need help with billing for order #12345')
 ```
 
 ### In-app link handling
