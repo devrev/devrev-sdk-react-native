@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.6] - 2026-06-24
+
+### Changed
+- [iOS] Improved memory usage during offline session replay uploads.
+- Enhanced overall performance during screen navigations.
+
+### Fixed
+- [Android] Fixed an issue related to rapid navigations.
+- [Android] Fixed an ANR related to animated dialog captures.
+- [Android] Fixed an issue related to keyboard scrolls on webviews.
+- [Android] Fixed an issue related to dispatch window callback mutations.
+
 ## [2.3.5] - 2026-06-12
 
 ### Fixed
