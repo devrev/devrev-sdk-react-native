@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/devrev/devrev-sdk-ios.git",
       "state" : {
-        "revision" : "9d0c748067ed66906dc0a9388abdf2aa2a3b9de7",
-        "version" : "2.3.6"
+        "revision" : "1c2ce7a441affde1a57339e9af3e8831788c5d4f",
+        "version" : "2.3.8"
       }
     }
   ],
