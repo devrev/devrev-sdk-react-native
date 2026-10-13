@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.11] - 2026-10-07
+
+### Added
+- [Android] - Added support for session recording on Android 17
+- [iOS] - Session Replay now masks the on-screen keyboard area to avoid capturing sensitive input.
+
+### Fixed
+- [Android] A user whose account was deleted on the backend is now re-identified automatically instead of failing subsequent requests.
+- [iOS] Fixed a crash related to flushing of log entries.
+
 ## [2.3.10] - 2026-09-03
 
 ### Added
