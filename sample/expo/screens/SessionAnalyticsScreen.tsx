@@ -26,6 +26,11 @@ const SessionMonitoringButtons = [
 const SessionRecordingButtons = [
   { text: 'Start Recording', onPress: DevRev.startRecording },
   { text: 'Stop Recording', onPress: DevRev.stopRecording },
+  { text: 'Abort Recording', onPress: () => DevRev.abortRecording() },
+  {
+    text: 'Abort Recording (Auto-Start On)',
+    onPress: () => DevRev.abortRecording(true),
+  },
   { text: 'Pause Recording', onPress: DevRev.pauseRecording },
   { text: 'Resume Recording', onPress: DevRev.resumeRecording },
   {

@@ -433,6 +433,9 @@ The DevRev SDK allows you to send custom analytic events by using a properties m
 DevRev.trackEvent(name: string, properties?: { [key: string]: string })
 ```
 
+> [!NOTE]
+> Event names must match the regular expression `^[a-zA-Z0-9_-]+$` — use only letters, digits, underscores, and hyphens. Names containing other characters are rejected. Keep event names and properties small: large payloads bloat the device's local memory and can lead to missed recordings.
+
 ### Session analytics
 
 The DevRev SDK offers session analytics features to help you understand how users interact with your app.
@@ -464,6 +467,7 @@ The session recording feature includes the following methods to control the reco
 |--------------------------------------------------------------------|-----------------------------------------------------------|
 |`DevRev.startRecording()`   | Starts the session recording.                             |
 |`DevRev.stopRecording()`    | Stops the session recording and uploads it to the portal. |
+|`DevRev.abortRecording(autoStartOnNextLaunch = false)`   | Ends the session recording and discards it without uploading. With `autoStartOnNextLaunch = true`, the next hot launch starts recording again. |
 |`DevRev.pauseRecording()`   | Pauses the ongoing session recording.                     |
 |`DevRev.resumeRecording()`  | Resumes a paused session recording.                       |
 |`DevRev.processAllOnDemandSessions()`  | Stops the ongoing user recording and sends all on-demand sessions along with the current recording. |
